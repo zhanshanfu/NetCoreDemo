@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using NetCoreDemo.Models;
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace NetCoreDemo
                 if (feature != null)
                 {
                     log.Error(feature.Error);
-                    await context.Response.WriteAsync(new ApiBaseModel { Msg = feature.Error.Message, Status = false, Result = null, }.ToString());
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(new ApiBaseModel { Msg = feature.Error.Message, Status = false, Result = null, }).ToString());
                 }
             });
         }
