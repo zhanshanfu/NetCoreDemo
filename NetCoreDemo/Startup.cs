@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetCoreDemo.DB.Models;
 using NetCoreDemo.Middleware;
 using NetCoreDemo.Models;
 using NetCoreDemo.Utils;
@@ -34,7 +35,10 @@ namespace NetCoreDemo
             services.AddControllers();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<GenericJwtTokenBase>();
-            // services.
+            services.AddSingleton<testContext>();
+
+            // ×¢²á·þÎñ
+            services.ServeRegistered();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "server=10.104.14.140;userid=dev;pwd=persona123.;port=3306;database=test;sslmode=none;" Pomelo.EntityFrameworkCore.MySql -OutputDir Models -Force

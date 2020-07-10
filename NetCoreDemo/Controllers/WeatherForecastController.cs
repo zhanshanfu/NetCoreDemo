@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using NetCoreDemo.Models;
 using NetCoreDemo.Utils;
 using NetCoreDemo.Filter;
+using NetCoreDemo.Service;
 
 namespace NetCoreDemo.Controllers
 {
@@ -23,10 +24,12 @@ namespace NetCoreDemo.Controllers
         };
 
         private readonly GenericJwtToken genericJwtToken;
+        private readonly TestService testService;
 
-        public WeatherForecastController(GenericJwtTokenBase genericJwtTokenBase)
+        public WeatherForecastController(GenericJwtTokenBase genericJwtTokenBase, TestService testService)
         {
             this.genericJwtToken = genericJwtTokenBase.Jwt;
+            this.testService = testService;
         }
         [Auth]
         [HttpGet]
@@ -58,5 +61,20 @@ namespace NetCoreDemo.Controllers
             //返回token和过期时间
             return ApiSuccess(new { jwtToken = AuthJwtEncoder.Encode(jwtToken), jwtToken.Expires });
         }
+        [HttpGet]
+        [Route("get_ball")]
+        public IActionResult GetBall()
+        {
+            testService.GetData();
+            return ApiSuccess();
+        }
+        [HttpGet]
+        [Route("test")]
+        public IActionResult Tast()
+        {
+            var s = testService.Test();
+            return ApiSuccess(s);
+        }
     }
 }
+
