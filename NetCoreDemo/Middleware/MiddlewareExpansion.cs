@@ -12,9 +12,5 @@ namespace NetCoreDemo.Middleware
         {
             builder.UseMiddleware<LoggerMiddle>();
         }
-        public static void UseJwtToken(this IApplicationBuilder builder)
-        {
-            builder.UseMiddleware<JwtTokenMiddle>();
-        }
     }
 }

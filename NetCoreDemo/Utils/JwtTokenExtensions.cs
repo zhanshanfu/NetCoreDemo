@@ -23,7 +23,7 @@ namespace NetCoreDemo.Utils
             {
 
             }
-            return null;
+            return new GenericJwtToken();
         }
     }
 }

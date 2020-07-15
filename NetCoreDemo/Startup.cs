@@ -34,12 +34,28 @@ namespace NetCoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<GenericJwtTokenBase>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<testContext>(options =>
                     options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
 
             // 注册服务
             services.ServeRegistered();
+            //从请求中读取 JWT
+            services.AddScoped(context =>
+            {
+                var httpContextAccessor = (IHttpContextAccessor)context.GetService(typeof(IHttpContextAccessor));
+                return httpContextAccessor.HttpContext.Request.ReadJWTCookie();
+            });
+            //配置跨域
+            services.AddCors(options =>
+                    options.AddPolicy("Cors",
+                        corsBuilder =>
+                            corsBuilder
+                                .SetIsOriginAllowed(url => true)
+                                .AllowAnyMethod()
+                                .AllowAnyHeader()
+                                .AllowCredentials())
+                    );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,22 +63,10 @@ namespace NetCoreDemo
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler(GlobalException.ExceptionHandler);
             }
 
-            //app.Use(next =>
-            //{
-            //    return new RequestDelegate(
-            //       async context =>
-            //         {
-            //             await context.Response.WriteAsync("xxx");
-            //         }
-            //        );
-            //});
             app.UseLogger();
-
-            app.UseJwtToken();
 
             app.UseAuthentication();
 

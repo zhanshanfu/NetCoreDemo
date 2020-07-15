@@ -29,10 +29,10 @@ namespace NetCoreDemo.Controllers
         private readonly TestService testService;
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(GenericJwtTokenBase genericJwtTokenBase, TestService testService,
+        public WeatherForecastController(GenericJwtToken genericJwtToken, TestService testService,
             ILogger<WeatherForecastController> _logger)
         {
-            this.genericJwtToken = genericJwtTokenBase.Jwt;
+            this.genericJwtToken = genericJwtToken;
             this.testService = testService;
             this._logger = _logger;
         }

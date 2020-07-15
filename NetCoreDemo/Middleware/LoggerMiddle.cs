@@ -12,23 +12,23 @@ namespace NetCoreDemo.Middleware
     public class LoggerMiddle
     {
         private readonly RequestDelegate _next;
-        private readonly Logger _logger = LogManager.GetLogger("logger");
-        public LoggerMiddle(RequestDelegate next)
+        private readonly ILogger<LoggerMiddle> logger;
+        public LoggerMiddle(RequestDelegate next, ILogger<LoggerMiddle> logger)
         {
             this._next = next;
+            this.logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
-            _logger.Info($"请求路径：{context.Request.Path + context.Request.QueryString.Value}");
-
+            logger.LogInformation($"请求路径：{context.Request.Path + context.Request.QueryString.Value}");
             if (!context.Request.Method.Equals("GET"))
             {
                 context.Request.EnableBuffering();
                 using (var data = new StreamReader(context.Request.Body, Encoding.UTF8, false, 1024, true))
                 {
                     var body = await data.ReadToEndAsync();
-                    _logger.Info($"请求 body：{body}");
+                    logger.LogInformation($"请求 body：{body}");
                     context.Request.Body.Seek(0, SeekOrigin.Begin);
                 }
             }

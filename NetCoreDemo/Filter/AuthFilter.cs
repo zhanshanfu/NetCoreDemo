@@ -11,10 +11,14 @@ namespace NetCoreDemo.Filter
 {
     public class AuthFilter : IAuthorizationFilter
     {
+        private readonly GenericJwtToken genericJwtToken;
+        public AuthFilter(GenericJwtToken genericJwtToken)
+        {
+            this.genericJwtToken = genericJwtToken;
+        }
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var login = context.HttpContext.Request.ReadJWTCookie();
-            if (login != null && login.Expires > DateTime.Now)
+            if (genericJwtToken != null && genericJwtToken.Expires > DateTime.Now)
                 return;
             context.Result = new UnauthorizedResult();
         }
