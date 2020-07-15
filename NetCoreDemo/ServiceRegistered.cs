@@ -11,7 +11,7 @@ namespace NetCoreDemo
     {
         public static IServiceCollection ServeRegistered(this IServiceCollection service)
         {
-            service.AddSingleton<TestService>();
+            service.AddTransient<TestService>();
             return service;
         }
 

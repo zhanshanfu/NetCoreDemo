@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using NLog.Web;
 
 namespace NetCoreDemo
@@ -22,8 +23,8 @@ namespace NetCoreDemo
             .ConfigureLogging(logger =>
             {
                 logger.ClearProviders();
+                logger.AddNLog();
             })
-            .UseNLog()
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();

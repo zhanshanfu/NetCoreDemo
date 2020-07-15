@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -33,9 +34,9 @@ namespace NetCoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<GenericJwtTokenBase>();
-            services.AddSingleton<testContext>();
+            services.AddDbContext<testContext>(options =>
+                    options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
 
             // ×¢²á·þÎñ
             services.ServeRegistered();
@@ -49,6 +50,16 @@ namespace NetCoreDemo
                 //app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler(GlobalException.ExceptionHandler);
             }
+
+            //app.Use(next =>
+            //{
+            //    return new RequestDelegate(
+            //       async context =>
+            //         {
+            //             await context.Response.WriteAsync("xxx");
+            //         }
+            //        );
+            //});
             app.UseLogger();
 
             app.UseJwtToken();
