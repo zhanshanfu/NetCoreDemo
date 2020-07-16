@@ -10,7 +10,7 @@ namespace NetCoreDemo.Middleware
     {
         public static void UseLogger(this IApplicationBuilder builder)
         {
-            builder.UseMiddleware<LoggerMiddle>();
+            builder.UseMiddleware<RequestLogMiddle>();
         }
     }
 }

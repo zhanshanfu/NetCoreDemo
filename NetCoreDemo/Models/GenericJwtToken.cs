@@ -13,9 +13,4 @@ namespace NetCoreDemo.Models
         public string UserName { get; set; }
         public DateTime Expires { get; set; }
     }
-
-    public class GenericJwtTokenBase
-    {
-        public GenericJwtToken Jwt { get; set; }
-    }
 }

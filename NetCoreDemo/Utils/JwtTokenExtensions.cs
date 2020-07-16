@@ -11,18 +11,13 @@ namespace NetCoreDemo.Utils
     {
         public static GenericJwtToken ReadJWTCookie(this HttpRequest request)
         {
-            string jwt = null;
             try
             {
-                jwt = request.Headers.Where(h => h.Key.Contains("Auth")).FirstOrDefault().Value.ToString();
+                string jwt = request.Headers["Authorization"].ToString();
                 var login = AuthJwtEncoder.Decode<GenericJwtToken>(jwt);
                 return login;
-
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) { }
             return new GenericJwtToken();
         }
     }

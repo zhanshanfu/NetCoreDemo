@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NetCoreDemo.DB\NetCoreDemo.DB.csproj" />
     <ProjectReference Include="..\NetCoreDemo.Service\NetCoreDemo.Service.csproj" />
+    <ProjectReference Include="..\NetCoreDemo.Tools\NetCoreDemo.Tools.csproj" />
   </ItemGroup>
 
 

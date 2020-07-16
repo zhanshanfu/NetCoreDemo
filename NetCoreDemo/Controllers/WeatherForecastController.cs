@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NetCoreDemo.Models;
@@ -36,7 +35,7 @@ namespace NetCoreDemo.Controllers
             this.testService = testService;
             this._logger = _logger;
         }
-        [Auth]
+        [AuthFilter]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

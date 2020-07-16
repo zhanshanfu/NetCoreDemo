@@ -1,33 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NetCoreDemo.Utils;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreDemo.Models;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace NetCoreDemo.Filter
 {
-    public class AuthFilter : IAuthorizationFilter
+    public class AuthFilter : ActionFilterAttribute
     {
-        private readonly GenericJwtToken genericJwtToken;
-        public AuthFilter(GenericJwtToken genericJwtToken)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
-            this.genericJwtToken = genericJwtToken;
-        }
-        public void OnAuthorization(AuthorizationFilterContext context)
-        {
+            var genericJwtToken = (GenericJwtToken)context.HttpContext.RequestServices.GetService(typeof(GenericJwtToken));
             if (genericJwtToken != null && genericJwtToken.Expires > DateTime.Now)
                 return;
             context.Result = new UnauthorizedResult();
-        }
-    }
-    public class AuthAttribute : TypeFilterAttribute
-    {
-        public AuthAttribute() : base(typeof(AuthFilter))
-        {
-
         }
     }
 }

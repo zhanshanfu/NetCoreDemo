@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo", ".\NetCoreDemo\NetCoreDemo.csproj", "{6704E85E-F54F-4F7D-ABA5-38F2CE41549B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo", "NetCoreDemo\NetCoreDemo.csproj", "{6704E85E-F54F-4F7D-ABA5-38F2CE41549B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.Service", ".\NetCoreDemo.Service\NetCoreDemo.Service.csproj", "{E45C1E26-3290-4691-985F-02E74960B404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.Service", "NetCoreDemo.Service\NetCoreDemo.Service.csproj", "{E45C1E26-3290-4691-985F-02E74960B404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.DB", ".\NetCoreDemo.DB\NetCoreDemo.DB.csproj", "{A2ACC20F-F688-403A-8A5A-6A3B2FAB5706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.DB", "NetCoreDemo.DB\NetCoreDemo.DB.csproj", "{A2ACC20F-F688-403A-8A5A-6A3B2FAB5706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.Entity", ".\NetCoreDemo.Entity\NetCoreDemo.Entity.csproj", "{25491A83-017F-4133-9CF8-65A98A314A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.Entity", "NetCoreDemo.Entity\NetCoreDemo.Entity.csproj", "{25491A83-017F-4133-9CF8-65A98A314A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.Tools", "NetCoreDemo.Tools\NetCoreDemo.Tools.csproj", "{22BC5FB5-EC85-4563-B166-DB96B1008F6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{25491A83-017F-4133-9CF8-65A98A314A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25491A83-017F-4133-9CF8-65A98A314A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25491A83-017F-4133-9CF8-65A98A314A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

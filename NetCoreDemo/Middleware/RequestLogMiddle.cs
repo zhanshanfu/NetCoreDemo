@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace NetCoreDemo.Middleware
 {
-    public class LoggerMiddle
+    public class RequestLogMiddle
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<LoggerMiddle> logger;
-        public LoggerMiddle(RequestDelegate next, ILogger<LoggerMiddle> logger)
+        private readonly ILogger<RequestLogMiddle> logger;
+        public RequestLogMiddle(RequestDelegate next, ILogger<RequestLogMiddle> logger)
         {
             this._next = next;
             this.logger = logger;

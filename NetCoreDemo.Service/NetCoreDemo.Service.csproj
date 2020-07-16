@@ -7,6 +7,13 @@
   <ItemGroup>
     <ProjectReference Include="..\NetCoreDemo.DB\NetCoreDemo.DB.csproj" />
     <ProjectReference Include="..\NetCoreDemo.Entity\NetCoreDemo.Entity.csproj" />
+    <ProjectReference Include="..\NetCoreDemo.Tools\NetCoreDemo.Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TestService.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>
