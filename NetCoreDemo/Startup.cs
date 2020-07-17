@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using NetCoreDemo.DB.Models;
 using NetCoreDemo.Middleware;
+using NetCoreDemo.Tools;
 using NetCoreDemo.Utils;
 
 namespace NetCoreDemo
@@ -28,7 +29,7 @@ namespace NetCoreDemo
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<testContext>(options =>
                     options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
-
+            services.AddSingleton<ConfigExtensions>();
             // 注册服务
             services.ServeRegistered();
             //从请求中读取 JWT

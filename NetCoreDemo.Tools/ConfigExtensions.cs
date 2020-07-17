@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -21,6 +18,10 @@ namespace NetCoreDemo.Tools
         public string GetAppsettings(string key)
         {
             return configuration.GetSection(key).Value;
+        }
+        public T GetConfig<T>(string key)
+        {
+            return configuration.GetSection(key).Get<T>();
         }
     }
 }

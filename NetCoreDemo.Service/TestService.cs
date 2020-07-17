@@ -5,15 +5,18 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using NetCoreDemo.Entity;
+using NetCoreDemo.Tools;
 
 namespace NetCoreDemo.Service
 {
     public class TestService
     {
         private readonly testContext testContext;
-        public TestService(testContext testContext)
+        private readonly ConfigExtensions configExtensions;
+        public TestService(testContext testContext, ConfigExtensions configExtensions)
         {
             this.testContext = testContext;
+            this.configExtensions = configExtensions;
         }
         public async void GetData()
         {
@@ -41,9 +44,18 @@ namespace NetCoreDemo.Service
                 testContext.SaveChanges();
             };
         }
+
         public dynamic Test()
         {
-            return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
+            var testConfig = configExtensions.GetAppsettings("TestConfig");
+            var student = configExtensions.GetConfig<Student>("Student");
+            //return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
+            return testConfig;
         }
+    }
+    public class Student
+    {
+        public string Name { get; set; }
+        public int Sex { get; set; }
     }
 }
