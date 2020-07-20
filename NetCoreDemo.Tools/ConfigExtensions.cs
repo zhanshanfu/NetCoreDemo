@@ -19,9 +19,16 @@ namespace NetCoreDemo.Tools
         {
             return configuration.GetSection(key).Value;
         }
-        public T GetConfig<T>(string key)
+        public T GetConfig<T>() where T : class
         {
-            return configuration.GetSection(key).Get<T>();
+            Type type = typeof(T);
+            var section = configuration.GetSection(type.Name);
+            if (section != null && section.Exists())
+            {
+                T options = section.Get<T>();
+                return options;
+            }
+            return null;
         }
     }
 }

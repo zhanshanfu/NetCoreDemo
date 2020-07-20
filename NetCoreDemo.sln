@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.DB", "NetCoreDe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.Entity", "NetCoreDemo.Entity\NetCoreDemo.Entity.csproj", "{25491A83-017F-4133-9CF8-65A98A314A06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.Tools", "NetCoreDemo.Tools\NetCoreDemo.Tools.csproj", "{22BC5FB5-EC85-4563-B166-DB96B1008F6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreDemo.Tools", "NetCoreDemo.Tools\NetCoreDemo.Tools.csproj", "{22BC5FB5-EC85-4563-B166-DB96B1008F6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreDemo.Test", "NetCoreDemo.Test\NetCoreDemo.Test.csproj", "{4E475D76-2013-41CF-8799-333A1D2E2399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22BC5FB5-EC85-4563-B166-DB96B1008F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E475D76-2013-41CF-8799-333A1D2E2399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E475D76-2013-41CF-8799-333A1D2E2399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E475D76-2013-41CF-8799-333A1D2E2399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E475D76-2013-41CF-8799-333A1D2E2399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

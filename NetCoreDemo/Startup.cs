@@ -26,6 +26,7 @@ namespace NetCoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMemoryCache();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<testContext>(options =>
                     options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
