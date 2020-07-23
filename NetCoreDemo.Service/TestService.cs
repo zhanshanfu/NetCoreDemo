@@ -1,11 +1,9 @@
-﻿using System;
-using NetCoreDemo.DB.Models;
-using System.Linq;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using NetCoreDemo.DB.Models;
 using NetCoreDemo.Entity;
 using NetCoreDemo.Tools;
+using Newtonsoft.Json;
+using System.Linq;
+using System.Net.Http;
 
 namespace NetCoreDemo.Service
 {
@@ -47,10 +45,10 @@ namespace NetCoreDemo.Service
 
         public dynamic Test()
         {
-            var testConfig = configExtensions.GetAppsettings("TestConfig");
-            var student = configExtensions.GetConfig<Student>();
-            //return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
-            return student;
+            // var testConfig = configExtensions.GetAppsettings("TestConfig");
+            //var student = configExtensions.GetConfig<Student>();
+            return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
+            //return student;
         }
     }
     public class Student

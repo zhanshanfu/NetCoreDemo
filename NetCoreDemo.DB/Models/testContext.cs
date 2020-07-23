@@ -15,6 +15,7 @@ namespace NetCoreDemo.DB.Models
         {
         }
 
+        public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Ball> Ball { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,6 +29,25 @@ namespace NetCoreDemo.DB.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>(entity =>
+            {
+                entity.ToTable("account");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.Sex)
+                    .HasColumnName("sex")
+                    .HasColumnType("int(255)");
+            });
+
             modelBuilder.Entity<Ball>(entity =>
             {
                 entity.ToTable("ball");
