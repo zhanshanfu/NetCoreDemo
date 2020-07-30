@@ -28,6 +28,14 @@ namespace NetCoreDemo.Test
             });
             Debugger.Break();
         }
+
+        [Fact()]
+        public void Test1()
+        {
+            string str = "2020-7-27";
+            var date = Convert.ToDateTime(str).ToString("M‘¬dd»’");
+            Debugger.Break();
+        }
         public class WorkOrgList
         {
             public string org_name;

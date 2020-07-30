@@ -46,9 +46,9 @@ namespace NetCoreDemo.Service
         public dynamic Test()
         {
             // var testConfig = configExtensions.GetAppsettings("TestConfig");
-            //var student = configExtensions.GetConfig<Student>();
-            return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
-            //return student;
+            var student = configExtensions.GetConfig<Student>();
+            //return testContext.Ball.OrderByDescending(b => b.Date).Take(10);
+            return student;
         }
     }
     public class Student

@@ -61,13 +61,13 @@ namespace NetCoreDemo
 
             app.UseLogger();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
