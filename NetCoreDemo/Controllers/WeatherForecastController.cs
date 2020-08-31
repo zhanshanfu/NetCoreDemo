@@ -91,7 +91,6 @@ namespace NetCoreDemo.Controllers
             bitmap.Save(stream, ImageFormat.Gif);
             return File(stream.ToArray(), "image/gif");
         }
-
     }
 }
 

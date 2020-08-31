@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="JWT" Version="7.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
       <PrivateAssets>all</PrivateAssets>
@@ -30,6 +31,14 @@
     <ProjectReference Include="..\NetCoreDemo.DB\NetCoreDemo.DB.csproj" />
     <ProjectReference Include="..\NetCoreDemo.Service\NetCoreDemo.Service.csproj" />
     <ProjectReference Include="..\NetCoreDemo.Tools\NetCoreDemo.Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\wwwroot\Controllers\" />
+    <Folder Include="Areas\wwwroot\Data\" />
+    <Folder Include="Areas\wwwroot\Models\" />
+    <Folder Include="Areas\wwwroot\Views\" />
+    <Folder Include="wwwroot\signR\" />
   </ItemGroup>
 
 

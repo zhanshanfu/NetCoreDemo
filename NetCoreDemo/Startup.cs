@@ -3,22 +3,28 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using NetCoreDemo.DB.Models;
 using NetCoreDemo.Middleware;
+using NetCoreDemo.SignalRChat;
 using NetCoreDemo.Tools;
 using NetCoreDemo.Tools.Redis;
 using NetCoreDemo.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace NetCoreDemo
 {
     public class Startup
     {
+
+        private const string c_CorsPolicy = "Cors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,7 +36,9 @@ namespace NetCoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
+            services.AddSignalR();
+
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<testContext>(options =>
                     options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
@@ -50,15 +58,27 @@ namespace NetCoreDemo
                 return httpContextAccessor.HttpContext.Request.ReadJWTCookie();
             });
             //ÅäÖÃ¿çÓò
-            services.AddCors(options =>
-                    options.AddPolicy("Cors",
-                        corsBuilder =>
-                            corsBuilder
-                                .SetIsOriginAllowed(url => true)
-                                .AllowAnyMethod()
-                                .AllowAnyHeader()
-                                .AllowCredentials())
-                    );
+            //services.AddCors(options =>
+            //        options.AddPolicy("Cors",
+            //            corsBuilder =>
+            //                corsBuilder
+            //                //    .SetIsOriginAllowed(url => url.Equals("http://10.104.14.144:8002"))
+            //                    .WithOrigins("*")
+            //                    .AllowAnyMethod()
+            //                    .AllowAnyHeader()
+            //                    .AllowCredentials())
+            //        );
+            var hosts = new List<string>();
+            Configuration.GetSection(c_CorsPolicy).Bind(hosts);
+            services.AddCors(optiopns =>
+            {
+                optiopns.AddPolicy(c_CorsPolicy, build =>
+                {
+                    build.WithOrigins(hosts.ToArray())
+                    .AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,10 +98,15 @@ namespace NetCoreDemo
             app.UseRouting();
 
             //app.UseAuthorization();
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider=new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")),
+                RequestPath="/wwwroot"
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }
