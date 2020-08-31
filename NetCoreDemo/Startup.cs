@@ -1,7 +1,10 @@
+using CSRedis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -9,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using NetCoreDemo.DB.Models;
 using NetCoreDemo.Middleware;
 using NetCoreDemo.Tools;
+using NetCoreDemo.Tools.Redis;
 using NetCoreDemo.Utils;
 
 namespace NetCoreDemo
@@ -30,6 +34,12 @@ namespace NetCoreDemo
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<testContext>(options =>
                     options.UseMySql(Configuration.GetValue<string>("MySqlConnection")));
+
+            services.AddSingleton(context =>
+            {
+                var config = (ConfigExtensions)context.GetService(typeof(ConfigExtensions));
+                return new RedisContext(config.GetConfig<RedisOptions>().Connect);
+            });
             services.AddSingleton<ConfigExtensions>();
             // ×¢²á·þÎñ
             services.ServeRegistered();

@@ -14,7 +14,7 @@ namespace NetCoreDemo
 {
     public class GlobalException
     {
-        private static readonly Logger log = LogManager.GetLogger("GlobalException");
+        private static readonly Logger log = LogManager.GetLogger("logger");
 
         public static void ExceptionHandler(IApplicationBuilder errApp)
         {
